@@ -67,11 +67,20 @@ public class Main {
 			}
 		}
 		
+		
+		//Kurs, ders ve konu atamalarý
 		Course course = new Course(1,1,"JAVA + REACT","javaKurs.jpg","Yazýlým Geliþtirici Yetiþtirme Kampý (JAVA + REACT Kursu)");
 		CourseManager courseManager = new CourseManager();
 		courseManager.add(course);
 		
-		CourseLecture courseLecture = new CourseLecture();
+		CourseLecture courseLecture1 = new CourseLecture(1,"1. Gün - 21 Nisan 2021");
+		CourseLecture courseLecture2 = new CourseLecture(1,"2. Gün");
+		CourseLecture courseLecture3 = new CourseLecture(1,"3. Gün");
+		
+		CourseLecture[] courseLectures = {courseLecture1, courseLecture2, courseLecture3};
+		
+		CourseLectureManager courseLectureManager = new CourseLectureManager();
+		courseLectureManager.addMultiple(courseLectures);
 	}
 
 }

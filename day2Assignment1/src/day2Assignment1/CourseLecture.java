@@ -20,5 +20,4 @@ public class CourseLecture {
 		this.courseId = courseId;
 		this.title = title;
 	}
-	
 }

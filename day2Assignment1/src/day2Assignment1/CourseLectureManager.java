@@ -24,6 +24,12 @@ public class CourseLectureManager {
 	public CourseLecture[] getAll() {
 		return Database.getInstance().courseLectures;
 	}
+
+	public void addMultiple(CourseLecture[] courseLectures) {
+		for (CourseLecture courseLecture : courseLectures) {
+			add(courseLecture);
+		}
+	}
 	
 	public CourseLecture[] getByCourseId(int courseId) {
 		CourseLecture[] filteredCourseLectures = new CourseLecture[0];
