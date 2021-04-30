@@ -9,8 +9,7 @@ public class InstructorManager extends UserManager {
 		 * için yazdým Gerçek projelerde artýk açýklama ve yorumlardan mümkün olduðunca
 		 * uzak duruyorum :) User ve instructor ekleme iþlemi sýkýntýlý Interface ve
 		 * Generic class kullanýldýðýnda belki daha doðru bir kodlama yapýlabilir
-		 * 
-		 * 
+		 *
 		 * Instructor için base kýsmýn kaydý için yine BaseClasstaki metoddan
 		 * yararlanýyoruz Test için ayrý bir user veriseti oluþturduðum için user
 		 * örneðini de ayrý bir diziye kaydediyorum
