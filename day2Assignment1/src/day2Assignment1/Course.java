@@ -14,13 +14,8 @@ public class Course {
 	}
 	
 	public Course(int id, int categoryId, int instructorId, String name, String imagePath, String description) {
+		this(categoryId, instructorId, name, imagePath, description);
 		this.id = id;
-		this.categoryId = categoryId;
-		this.instructorId = instructorId;
-		this.name = name;
-		this.imagePath = imagePath;
-		this.description = description;
-		this.starsCount = 0;
 	}
 	
 	public Course(int categoryId, int instructorId, String name, String imagePath, String description) {

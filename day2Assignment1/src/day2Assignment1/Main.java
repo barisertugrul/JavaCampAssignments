@@ -81,6 +81,55 @@ public class Main {
 		
 		CourseLectureManager courseLectureManager = new CourseLectureManager();
 		courseLectureManager.addMultiple(courseLectures);
+		
+		LectureSubject subject1 = new LectureSubject(1,"program-icon.svg","Ders Programý", "Kurs sayfasý içeriði");
+		LectureSubject subject2 = new LectureSubject(1,"ders-kaydi-icon.svg","1.Gün Sonu Kayýt", "Kurs sayfasý içeriði");
+		LectureSubject subject3 = new LectureSubject(1,"odev-icon.svg","Ödev 1", "Kurs sayfasý içeriði");
+		LectureSubject subject4 = new LectureSubject(1,"odev-icon.svg","Ödev 2", "Kurs sayfasý içeriði");
+		LectureSubject subject5 = new LectureSubject(1,"odev-icon.svg","Ödev 3", "Kurs sayfasý içeriði");
+		LectureSubject subject6 = new LectureSubject(1,"degerlendirme-icon.svg","Deðerlendirme", "Kurs sayfasý içeriði");
+		
+
+		LectureSubject subject7 = new LectureSubject(2,"program-icon.svg","Ders Programý", "Kurs sayfasý içeriði");
+		LectureSubject subject8 = new LectureSubject(2,"ders-kaydi-icon.svg","2.Gün Sonu Kayýt", "Kurs sayfasý içeriði");
+		LectureSubject subject9 = new LectureSubject(2,"odev-icon.svg","Ödev 1", "Kurs sayfasý içeriði");
+		LectureSubject subject10 = new LectureSubject(2,"odev-icon.svg","Ödev 2", "Kurs sayfasý içeriði");
+		LectureSubject subject11 = new LectureSubject(2,"degerlendirme-icon.svg","Deðerlendirme", "Kurs sayfasý içeriði");
+
+		LectureSubject subject12 = new LectureSubject(3,"program-icon.svg","Ders Programý", "Kurs sayfasý içeriði");
+		LectureSubject subject13 = new LectureSubject(3,"ders-kaydi-icon.svg","3.Gün Sonu Kayýt", "Kurs sayfasý içeriði");
+		LectureSubject subject14 = new LectureSubject(3,"odev-icon.svg","Ödev 1", "Kurs sayfasý içeriði");
+		LectureSubject subject15 = new LectureSubject(3,"odev-icon.svg","Ödev 2", "Kurs sayfasý içeriði");
+		LectureSubject subject16 = new LectureSubject(3,"degerlendirme-icon.svg","Deðerlendirme", "Kurs sayfasý içeriði");
+		
+		LectureSubject[] subjects = {
+				subject1, subject2,subject3,subject4,
+				subject5,subject6,subject7,subject8,
+				subject9,subject10,subject11,subject12,
+				subject13,subject14,subject15,subject16
+		};
+		
+		LectureSubjectManager lectureSubjectManager = new LectureSubjectManager();
+		lectureSubjectManager.addMultiple(subjects);
+		
+		System.out.println("\n********************************************************************************");
+		System.out.println("*  ================================ Courses ================================  *");
+		System.out.println("********************************************************************************\n");
+		
+		Course[] courses = courseManager.getAll();
+		for (Course courseItem : courses) {
+			System.out.println(courseItem.name);
+			System.out.println("[" + courseItem.description + "]");
+			CourseLecture[] lectures = courseLectureManager.getByCourseId(courseItem.id);
+			for (CourseLecture lecture : lectures) {
+				System.out.println("     * DERS: " + lecture.title);
+				subjects = lectureSubjectManager.getByLectureId(lecture.id);
+				for (LectureSubject subject : subjects) {
+					System.out.println("          " + subject.title);
+				}
+			}
+			
+		}
 	}
 
 }

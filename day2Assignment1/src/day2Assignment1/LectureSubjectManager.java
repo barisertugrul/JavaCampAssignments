@@ -19,6 +19,12 @@ public class LectureSubjectManager {
 		
 		Database.getInstance().lectureSubjects = lectureSubjects;
 	}
+
+	public void addMultiple(LectureSubject[] lectureSubjects) {
+		for (LectureSubject lectureSubject : lectureSubjects) {
+			add(lectureSubject);
+		}
+	}
 	
 	public LectureSubject[] getAll() {
 		return Database.getInstance().lectureSubjects;

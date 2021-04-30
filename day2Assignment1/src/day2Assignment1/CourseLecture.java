@@ -10,9 +10,8 @@ public class CourseLecture {
 	}
 
 	public CourseLecture(int id, int courseId, String title) {
+		this( courseId, title );
 		this.id = id;
-		this.courseId = courseId;
-		this.title = title;
 	}
 
 	public CourseLecture(int courseId, String title) {
