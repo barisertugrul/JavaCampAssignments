@@ -11,25 +11,28 @@ public class StudentManager extends UserManager {
 		return lastId;
 	}
 	
-	public int addStudent(Student student) {
-		User user = new User();
-		User[] users = Database.getInstance().users;
-		User[] tempUsers = users;
-		users = new User[users.length+1];
+	public void addStudent(Student student) {
+		User user = new User(student.firstName,student.lastName, student.eMail,student.password,student.avatar);
+		this.add(user);
+		Student[] students = Database.getInstance().students;
+		Student[] tempStudents = students;
+		students = new Student[students.length+1];
 		
-		for (int i = 0; i < tempUsers.length; i++) {
-			users[i] = tempUsers[i];
+		for (int i = 0; i < tempStudents.length; i++) {
+			students[i] = tempStudents[i];
 		}
 		
-		
-		Database.getInstance().userId += 1;
+
 		int newId = Database.getInstance().userId;
-		user.id = newId;
+		student.id = newId;
 		
-		users[users.length-1] = user;
+		students[students.length-1] = student;
 		
-		Database.getInstance().users = users;
-		
-		return newId;
+		Database.getInstance().students = students;
+		Database.getInstance().studentId = newId;
+	}
+	
+	public Student[] getAll() {
+		return Database.getInstance().students;
 	}
 }

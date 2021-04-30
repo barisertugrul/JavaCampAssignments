@@ -22,4 +22,8 @@ public class UserManager {
 		
 		return newId;
 	}
+	
+	public User[] getAll() {
+		return Database.getInstance().users;
+	}
 }
