@@ -18,17 +18,26 @@ public class Main {
 		Student student2 = new Student("Kerem","Varýþ","kerem@kerem.com","12345","avatar-kerem.jpg",preferences);
 
 		StudentManager studentManager = new StudentManager();
-		studentManager.addStudent(student1);
-		studentManager.addStudent(student2);
+		studentManager.add(student1);
+		studentManager.add(student2);
 		
-		String[] skills = {"C#", "Java", "Flutter", "Python"};
-		String[] certificates = {"MCT", "PMP"};
-		double salary = 6500;
-		Instructor instructor1 = new Instructor("Engin","Demiroð","engin@engindemirog.com","12345","avatar-engin.jpg",skills, certificates,salary);
+		String[] skills1 = {"C#", "Java", "Flutter", "Python"};
+		String[] certificates1 = {"MCT", "PMP"};
+		double salary1 = 6500;
+		Instructor instructor1 = new Instructor("Engin","Demiroð","engin@engindemirog.com","12345","avatar-engin.jpg",skills1, certificates1,salary1);
 		
 		
 		InstructorManager instructorManager = new InstructorManager();
-		instructorManager.addInstructor(instructor1);
+		instructorManager.add(instructor1);
+		
+
+		String[] skills2 = {"C#", "Java", "Flutter", "Python"};
+		String[] certificates2 = {"MCT", "PMP"};
+		double salary2 = 6500;
+		Instructor instructor2 = new Instructor("Engin","Demiroð","engin@engindemirog.com","12345","avatar-engin.jpg",skills2, certificates2,salary2);
+		
+		
+		instructorManager.add(instructor2);
 		
 		User[] users = userManager.getAll();
 		Student[] students = studentManager.getAll();
@@ -40,7 +49,7 @@ public class Main {
 		System.out.format("%6s%30s%35s", "No", "Ýsim-Soyisim", "E-Posta Adresi\n");
 		System.out.format("%6s%30s%35s", "--", "------------", "--------------\n");
 		for (User user : users) {
-			System.out.format("%6s%30s%35s", user.id, user.firstName + " " + user.lastName, user.eMail + "\n");
+			System.out.format("%6s%30s%35s", user.getId(), user.getFirstName() + " " + user.getLastName(), user.geteMail() + "\n");
 		}
 
 		
@@ -50,7 +59,7 @@ public class Main {
 		System.out.format("%6s%30s%35s%40s", "No", "Ýsim-Soyisim", "E-Posta Adresi", "Skills\n");
 		System.out.format("%6s%30s%35s%40s", "--", "------------", "--------------", "------\n");
 		for (Instructor instructor : instructors) {
-			System.out.format("%6s%30s%35s%40s", instructor.id, instructor.firstName + " " + instructor.lastName, instructor.eMail, String.join(",", instructor.skills) + "\n");
+			System.out.format("%6s%30s%35s%40s", instructor.getId(), instructor.getFirstName() + " " + instructor.getLastName(), instructor.geteMail(), String.join(",", instructor.getSkills()) + "\n");
 		}
 
 		
@@ -60,7 +69,7 @@ public class Main {
 		System.out.format("%6s%30s%35s", "No", "Ýsim-Soyisim", "E-Posta Adresi\n");
 		System.out.format("%6s%30s%35s", "--", "------------", "--------------\n");
 		for (Student student : students) {
-			System.out.format("%6s%30s%35s", student.id, student.firstName + " " + student.lastName, student.eMail + "\n");
+			System.out.format("%6s%30s%35s", student.getId(), student.getFirstName() + " " + student.getLastName(), student.geteMail() + "\n");
 			preferences = student.informationPreferences;
 			if(preferences.containsKey("EmailBildirimi")) {
 				System.out.println("++++Email Bildirimi: " + preferences.get("EmailBildirimi") + "\n");
@@ -128,8 +137,14 @@ public class Main {
 					System.out.println("          " + subject.title);
 				}
 			}
-			
 		}
+		
+		int a = 5;
+		int b = 10;
+		int c = 12;
+		
+		String dger = "%" + a + "%" + b + "%" + c;
+		System.out.println(dger);
 	}
 
 }
