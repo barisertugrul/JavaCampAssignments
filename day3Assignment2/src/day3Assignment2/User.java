@@ -1,80 +1,76 @@
 package day3Assignment2;
 
 public class User {
-	private int id;
-	private String firstName;
-	private String lastName;
-	private String eMail;
-	private String password;
-	private String avatar;
+	private int _id;
+	private String _firstName;
+	private String _lastName;
+	private String _eMail;
+	private String _password;
+	private String _avatar;
 	
 	public User() {
 
 	}
 
 	public User(int id, String firstName, String lastName, String eMail, String password, String avatar) {
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.eMail = eMail;
-		this.password = password;
-		this.avatar = avatar;
+		this(firstName, lastName, eMail, password, avatar);
+		_id = id;
 	}
 
 	public User(String firstName, String lastName, String eMail, String password, String avatar) {
-		this.id = 0;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.eMail = eMail;
-		this.password = password;
-		this.avatar = avatar;
+		_id = 0;
+		_firstName = firstName;
+		_lastName = lastName;
+		_eMail = eMail;
+		_password = password;
+		_avatar = avatar;
 	}
 
 	public int getId() {
-		return id;
+		return _id;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		_id = id;
 	}
 
 	public String getFirstName() {
-		return firstName;
+		return _firstName;
 	}
 
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		_firstName = firstName;
 	}
 
 	public String getLastName() {
-		return lastName;
+		return _lastName;
 	}
 
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		_lastName = lastName;
 	}
 
 	public String geteMail() {
-		return eMail;
+		return _eMail;
 	}
 
 	public void seteMail(String eMail) {
-		this.eMail = eMail;
+		_eMail = eMail;
 	}
 
 	public String getPassword() {
-		return password;
+		return _password;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		_password = password;
 	}
 
 	public String getAvatar() {
-		return avatar;
+		return _avatar;
 	}
 
 	public void setAvatar(String avatar) {
-		this.avatar = avatar;
+		_avatar = avatar;
 	}
 }

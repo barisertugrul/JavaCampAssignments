@@ -1,9 +1,9 @@
 package day3Assignment2;
 
 public class Instructor extends User {
-	private String[] skills;
-	private String[] certificates;
-	private double salary;
+	private String[] _skills;
+	private String[] _certificates;
+	private double _salary;
 	
 	public Instructor() {
 		super();
@@ -11,45 +11,36 @@ public class Instructor extends User {
 
 	public Instructor(int id, String firstName, String lastName, String eMail, String password, String avatar,String[] skills, String[] certificates, double salary) {
 		super(id, firstName, lastName, eMail, password, avatar);
-		this.skills = skills;
-		this.certificates = certificates;
-		this.salary = salary;
+		_skills = skills;
+		_certificates = certificates;
+		_salary = salary;
 	}
 
 	public Instructor(String firstName, String lastName, String eMail, String password, String avatar,String[] skills, String[] certificates, double salary) {	
-		super(firstName, lastName, eMail, password, avatar);
-		this.skills = skills;
-		this.certificates = certificates;
-		this.salary = salary;
-	}
-
-	public Instructor(String[] skills, String[] certificates, double salary) {
-		this.skills = skills;
-		this.certificates = certificates;
-		this.salary = salary;
+		this(0, firstName, lastName, eMail, password, avatar, skills, certificates, salary);
 	}
 
 	public String[] getSkills() {
-		return skills;
+		return _skills;
 	}
 
 	public void setSkills(String[] skills) {
-		this.skills = skills;
+		_skills = skills;
 	}
 
 	public String[] getCertificates() {
-		return certificates;
+		return _certificates;
 	}
 
 	public void setCertificates(String[] certificates) {
-		this.certificates = certificates;
+		_certificates = certificates;
 	}
 
 	public double getSalary() {
-		return salary;
+		return _salary;
 	}
 
 	public void setSalary(double salary) {
-		this.salary = salary;
+		_salary = salary;
 	}
 }

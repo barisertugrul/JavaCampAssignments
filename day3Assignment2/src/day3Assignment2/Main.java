@@ -70,7 +70,7 @@ public class Main {
 		System.out.format("%6s%30s%35s", "--", "------------", "--------------\n");
 		for (Student student : students) {
 			System.out.format("%6s%30s%35s", student.getId(), student.getFirstName() + " " + student.getLastName(), student.geteMail() + "\n");
-			preferences = student.informationPreferences;
+			preferences = student._informationPreferences;
 			if(preferences.containsKey("EmailBildirimi")) {
 				System.out.println("++++Email Bildirimi: " + preferences.get("EmailBildirimi") + "\n");
 			}
