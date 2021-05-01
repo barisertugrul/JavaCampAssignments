@@ -14,6 +14,17 @@ public class UserManager {
 	
 	public int add(User user) {
 		//return Database.getInstance().addUser(user);
+		
+		//Ödev için örnek yazdýrma iþlemi, gelen verinin hangi sýnýfa ait olduðunun tespiti
+		if(user.getClass().equals(Student.class)) {
+			System.out.println("Eklenecek kullanýcý bir Student nesnesidir ve komut bir StudentManager tarafýndan yürütülmüþtür.");
+		}else if(user.getClass().equals(Instructor.class)){
+			System.out.println("Eklenecek kullanýcý bir Instructor nesnesidir ve komut bir InstructorManager tarafýndan yürütülmüþtür.");
+		}else{
+			System.out.println("Eklenecek kullanýcý bir User nesnesidir ve komut bir UserManager tarafýndan yürütülmüþtür.");
+		}
+		
+		//Verisetine ekleme iþlemi
 		return Database.getInstance().addUser(user,_users);
 	}
 	
