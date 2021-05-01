@@ -9,7 +9,11 @@ public class Main {
 	public static void main(String[] args) {
 		/*
 		 * Version 2 üzerinde çalýþýlýyor
+		 * Constructor aracýlýðý ile kayýt tablosuna ait
+		 * diziyi kullandýrtmaya çalýþýyorum sisteme
 		 */
+		
+		System.out.println("3.GÜN 2.ÖDEV VERSION 2 ÇALIÞIYOR");
 		
 		UserManager userManager = new UserManager();
 		
@@ -145,10 +149,6 @@ public class Main {
 				}
 			}
 		}
-		studentManager.userCount();
-		instructorManager.userCount();
-		StudentManager studentManager2 = new StudentManager();
-		studentManager2.userCount();
 	}
 
 	private static void login() {
@@ -166,8 +166,7 @@ public class Main {
 			logged = userManager.login(email, password);
 			kullaniciGirdisi.close();
 		}
-		
-		
+
 	}
 
 }

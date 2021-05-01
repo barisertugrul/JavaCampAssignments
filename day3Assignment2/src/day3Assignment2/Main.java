@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
+		System.out.println("3.GÜN 2.ÖDEV VERSION 1 ÇALIÞIYOR");
 		
 		UserManager userManager = new UserManager();
 		

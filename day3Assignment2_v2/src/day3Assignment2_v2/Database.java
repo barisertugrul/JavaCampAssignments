@@ -21,6 +21,7 @@ public class Database {
 	Comment[] comments;
 	CommentImage[] commentImages;
 	Membership[] memberships;
+	static User[] users1;
 	
 	//Otomatik artan ID simülasyonu için
 	int userId = 0;
@@ -72,7 +73,10 @@ public class Database {
 		users[users.length-1] = user;
 		
 		userDB = users;
-		System.out.println("Test user: " + user.getFirstName());
+		for (User user2 : userDB) {
+			System.out.println("Test user: " + user2.getFirstName());
+		}
+		
 		return newId;
     }
     
@@ -130,7 +134,7 @@ public class Database {
     }
     
     public User login(String email, String password) {
-    	for (User user : this.users) {
+    	for (User user : users1) {
 			if(user.geteMail().equals(email) && user.getPassword().equals(password)) {
 				return user;
 			}

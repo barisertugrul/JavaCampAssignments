@@ -9,8 +9,6 @@ public class StudentManager extends UserManager {
 
 	@Override
 	public int add(User user){
-		int testUserId = super.addTest(user);
-		System.out.println("Test user ýd: " + testUserId);
 		/*
 		 * Not: Açýklamalarý sadece kurs ödevi olmasý nedeniyle, inceleyecek arkadaþlar
 		 * için yazdým Gerçek projelerde artýk açýklama ve yorumlardan mümkün olduðunca
