@@ -1,9 +1,16 @@
-package day3Assignment2;
+package day3Assignment2_v2;
 
 public class StudentManager extends UserManager {
-	
+	public StudentManager() {
+		super(Database.getInstance().students);
+		// TODO Auto-generated constructor stub
+	}
+
+
 	@Override
 	public int add(User user){
+		int testUserId = super.addTest(user);
+		System.out.println("Test user ıd: " + testUserId);
 		/*
 		 * Not: Açıklamaları sadece kurs ödevi olması nedeniyle, inceleyecek arkadaşlar
 		 * için yazdım Gerçek projelerde artık açıklama ve yorumlardan mümkün olduğunca

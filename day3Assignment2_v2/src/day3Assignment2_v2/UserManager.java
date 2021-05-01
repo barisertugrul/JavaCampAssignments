@@ -1,6 +1,22 @@
-package day3Assignment2;
+package day3Assignment2_v2;
 
 public class UserManager {
+	
+	private User[] _users;
+
+	public UserManager() {
+		this(Database.getInstance().users);
+	}
+	
+	public UserManager(User[] users) {
+		_users = users;
+		userCount();
+	}
+	
+	public int addTest(User user) {
+		System.out.println("Test user ıd: " + user.getFirstName());
+		return Database.getInstance().addUserTest(user,_users);
+	}
 	
 	public int add(User user) {
 		return Database.getInstance().addUser(user);
@@ -20,5 +36,9 @@ public class UserManager {
 			System.out.println("Eposta hesabı veya şifreniz hatalı!");
 			return false;
 		}
+	}
+	
+	public void userCount() {
+		System.out.println(_users.toString() + "****" + _users.length);
 	}
 }

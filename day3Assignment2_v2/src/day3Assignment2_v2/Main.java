@@ -1,4 +1,4 @@
-package day3Assignment2;
+package day3Assignment2_v2;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,6 +7,9 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
+		/*
+		 * Version 2 üzerinde çalýþýlýyor
+		 */
 		
 		UserManager userManager = new UserManager();
 		
@@ -36,7 +39,6 @@ public class Main {
 		String[] certificates2 = {"MCT", "PMP"};
 		double salary2 = 6500;
 		Instructor instructor2 = new Instructor("Engin","Demiroð","engin@engindemirog.com","12345","avatar-engin.jpg",skills2, certificates2,salary2);
-		
 		
 		instructorManager.add(instructor2);
 		
@@ -143,6 +145,10 @@ public class Main {
 				}
 			}
 		}
+		studentManager.userCount();
+		instructorManager.userCount();
+		StudentManager studentManager2 = new StudentManager();
+		studentManager2.userCount();
 	}
 
 	private static void login() {
