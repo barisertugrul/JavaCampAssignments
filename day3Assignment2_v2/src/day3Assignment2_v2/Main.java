@@ -15,7 +15,7 @@ public class Main {
 		
 		System.out.println("3.GÜN 2.ÖDEV VERSION 2 ÇALIŞIYOR\n");
 		
-		UserManager userManager = new UserManager();
+		UserManager userManager = new UserManager(Database.getInstance().users);
 		
 		Map<String,Boolean> preferences = new HashMap<String,Boolean>();
 		preferences.put("EmailBildirimi", true);
@@ -37,6 +37,7 @@ public class Main {
 		
 		InstructorManager instructorManager = new InstructorManager();
 		instructorManager.add(instructor1);
+		userManager = new UserManager(Database.getInstance().users);
 		
 
 		String[] skills2 = {"C#", "Java", "Flutter", "Python"};

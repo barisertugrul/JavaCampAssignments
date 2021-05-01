@@ -74,8 +74,8 @@ public class Database {
 		
 		userDB = users;
 		for (User user2 : userDB) {
-			System.out.println("Test user: " + user2.toString());
-			System.out.println("Test DB: " + userDB.toString());
+			System.out.println("Kullanýcý Eklendi: " + user2.getFirstName() + " " + user2.getLastName());
+			System.out.println("User Type: " + user2.getClass().getTypeName());
 		}
 		
 		return newId;

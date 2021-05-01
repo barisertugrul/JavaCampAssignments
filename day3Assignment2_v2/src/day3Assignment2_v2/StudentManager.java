@@ -6,7 +6,6 @@ public class StudentManager extends UserManager {
 		// TODO Auto-generated constructor stub
 	}
 
-
 	@Override
 	public int add(User user){
 		/*
