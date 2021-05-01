@@ -21,7 +21,6 @@ public class Database {
 	Comment[] comments;
 	CommentImage[] commentImages;
 	Membership[] memberships;
-	static User[] users1;
 	
 	//Otomatik artan ID simülasyonu için
 	int userId = 0;
@@ -56,13 +55,64 @@ public class Database {
         return instance;
     }
     
-    public int addUserTest(User user, User[] userDB) {
-    	User[] users = userDB;
-		User[] tempUsers = users;
-		users = new User[users.length+1];
+    public int addUser(User user, User[] userDB) {
+    	
+    	//Kötü kod: userDB'yi referans olarak alamadýðým için
+    	//user nesnesinin gerçek classýna göre
+    	//veritabaný temsili tablosunu seçtiriyorum
+    	//Test için her durumda gelen user bilgisini users tablosuna ekliyorum
+    	int lastId = addBaseUser(user);
+    	user.setId(lastId);
+    	if(user.getClass().equals(User.class)) {
+			  return lastId;
+		}else if(user.getClass().equals(Student.class)) {
+			  return addStudent((Student) user);
+		}else if(user.getClass().equals(Instructor.class)){
+			  return addInstructor((Instructor) user);
+		}else{
+			  return 0;
+		}
+		  /*
+		   * User[] tempUsers = userDB;
+		   * userDB = new User[userList.length+1];
+			 * 
+			 * for (int i = 0; i < tempUsers.length; i++) {
+			 *  userDB[i] = tempUsers[i]; 
+			 *  }
+			 * 
+			 * this.userId += 1;
+			 * int newId = this.userId;
+			 * user.setId(newId);
+			 * 
+			 * userDB[userDB.length-1] = user;
+			 * 
+			 * return newId;
+		   */
+    }
+    
+	/*
+	 * public int addUser(User user) { User[] userList = this.users; User[]
+	 * tempUsers = userList; userList = new User[userList.length+1];
+	 * 
+	 * for (int i = 0; i < tempUsers.length; i++) { userList[i] = tempUsers[i]; }
+	 * 
+	 * 
+	 * this.userId += 1; int newId = this.userId; user.setId(newId);
+	 * 
+	 * userList[userList.length-1] = user;
+	 * 
+	 * this.users = userList;
+	 * 
+	 * return newId; }
+	 */
+    
+    public int addBaseUser(User user) {
+    	User[] userList = this.users;
+		User[] tempUsers = userList;
+		userList = new User[userList.length+1];
 		
 		for (int i = 0; i < tempUsers.length; i++) {
-			users[i] = tempUsers[i];
+			userList[i] = tempUsers[i];
 		}
 		
 		
@@ -70,39 +120,14 @@ public class Database {
 		int newId = this.userId;
 		user.setId(newId);
 		
-		users[users.length-1] = user;
+		userList[userList.length-1] = user;
 		
-		userDB = users;
-		for (User user2 : userDB) {
-			System.out.println("Kullanýcý Eklendi: " + user2.getFirstName() + " " + user2.getLastName());
-			System.out.println("User Type: " + user2.getClass().getTypeName());
-		}
+		this.users = userList;
 		
 		return newId;
     }
     
-    public int addUser(User user) {
-    	User[] users = this.users;
-		User[] tempUsers = users;
-		users = new User[users.length+1];
-		
-		for (int i = 0; i < tempUsers.length; i++) {
-			users[i] = tempUsers[i];
-		}
-		
-		
-		this.userId += 1;
-		int newId = this.userId;
-		user.setId(newId);
-		
-		users[users.length-1] = user;
-		
-		this.users = users;
-		
-		return newId;
-    }
-    
-    public void addInstructor(Instructor instructor) {
+    public int addInstructor(Instructor instructor) {
     	Instructor[] instructors = this.instructors;
 		Instructor[] tempInstructors = instructors;
 		instructors = new Instructor[instructors.length+1];
@@ -111,14 +136,13 @@ public class Database {
 			instructors[i] = tempInstructors[i];
 		}
 		
-		
 		instructors[instructors.length-1] = instructor;
 		
 		this.instructors = instructors;
-		//this.instructorId = instructor.getId();
+		return instructor.getId();
     }
     
-    public void addStudent(Student student) {
+    public int addStudent(Student student) {
     	Student[] students = this.students;
 		Student[] tempStudents = students;
 		students = new Student[students.length+1];
@@ -127,15 +151,14 @@ public class Database {
 			students[i] = tempStudents[i];
 		}
 		
-		
 		students[students.length-1] = student;
 		
 		this.students = students;
-		//this.studentId = student.getId();
+		return student.getId();
     }
     
     public User login(String email, String password) {
-    	for (User user : users1) {
+    	for (User user : users) {
 			if(user.geteMail().equals(email) && user.getPassword().equals(password)) {
 				return user;
 			}

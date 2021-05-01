@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Main {
 
+	public static User[] tblUsers = new User[0];
 	public static void main(String[] args) {
 		/*
 		 * Version 2 üzerinde çalýþýlýyor
@@ -16,7 +17,8 @@ public class Main {
 		System.out.println("3.GÜN 2.ÖDEV VERSION 2 ÇALIÞIYOR\n");
 		
 		UserManager userManager = new UserManager(Database.getInstance().users);
-		
+		User user1 = new User("Barýþ","Ertuðrul","barisertugrul@barisertugrul.com","12345","avatar.jpg");
+		userManager.add(user1);
 		Map<String,Boolean> preferences = new HashMap<String,Boolean>();
 		preferences.put("EmailBildirimi", true);
 		Student student1 = new Student("Barýþ","Ertuðrul","barisertugrul@barisertugrul.com","12345","avatar.jpg",preferences);
@@ -37,7 +39,7 @@ public class Main {
 		
 		InstructorManager instructorManager = new InstructorManager();
 		instructorManager.add(instructor1);
-		userManager = new UserManager(Database.getInstance().users);
+		//userManager = new UserManager(Database.getInstance().users);
 		
 
 		String[] skills2 = {"C#", "Java", "Flutter", "Python"};
@@ -150,6 +152,10 @@ public class Main {
 					System.out.println("          " + subject.title);
 				}
 			}
+		}
+		
+		for (User user : tblUsers) {
+			System.out.format("%6s%30s%35s", user.getId(), user.getFirstName() + " " + user.getLastName(), user.geteMail() + "\n");
 		}
 	}
 

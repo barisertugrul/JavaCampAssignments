@@ -14,7 +14,7 @@ public class UserManager {
 	
 	public int add(User user) {
 		//return Database.getInstance().addUser(user);
-		return Database.getInstance().addUserTest(user,_users);
+		return Database.getInstance().addUser(user,_users);
 	}
 	
 	public User[] getAll() {
