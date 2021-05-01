@@ -2,6 +2,7 @@ package day3Assignment2;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
 
@@ -38,6 +39,10 @@ public class Main {
 		
 		
 		instructorManager.add(instructor2);
+		
+		//Kullanýcý giriþ iþlemleri
+		
+		login();
 		
 		User[] users = userManager.getAll();
 		Student[] students = studentManager.getAll();
@@ -145,6 +150,24 @@ public class Main {
 		
 		String dger = "%" + a + "%" + b + "%" + c;
 		System.out.println(dger);
+	}
+
+	private static void login() {
+		boolean logged = false;
+		while (!logged) {
+			Scanner kullaniciGirdisi = new Scanner(System.in);
+			System.out.println("LOGIN: ");
+			System.out.print("E-Posta adresinizi giriniz: ");
+			String email = kullaniciGirdisi.next();
+			kullaniciGirdisi.nextLine();
+			System.out.print("Parolanýzý giriniz: ");
+			String password = kullaniciGirdisi.next();
+			kullaniciGirdisi.nextLine();
+			UserManager userManager = new UserManager();
+			logged = userManager.login(email, password);
+		}
+		
+		
 	}
 
 }

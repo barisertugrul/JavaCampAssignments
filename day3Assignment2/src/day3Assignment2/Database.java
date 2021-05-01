@@ -1,6 +1,14 @@
 package day3Assignment2;
 
 public class Database {
+	/*
+	 * Database simülasyonu
+	 * Diziler veri seti
+	 * Classslar içinde gereksiz kod karmaþasý olmamasý için
+	 * CRUD metotlarýný da buraya ekledim.
+	 * Sonuçta bu gerçek bir yapý deðil
+	*/
+	
 	private static Database instance;
 	User[] users;
 	Instructor[] instructors;
@@ -100,4 +108,12 @@ public class Database {
 		//this.studentId = student.getId();
     }
     
+    public User login(String email, String password) {
+    	for (User user : this.users) {
+			if(user.geteMail().equals(email) && user.getPassword().equals(password)) {
+				return user;
+			}
+		}
+    	return null;
+    }
 }
