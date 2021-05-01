@@ -13,7 +13,7 @@ public class Main {
 		 * diziyi kullandýrtmaya çalýþýyorum sisteme
 		 */
 		
-		System.out.println("3.GÜN 2.ÖDEV VERSION 2 ÇALIÞIYOR");
+		System.out.println("3.GÜN 2.ÖDEV VERSION 2 ÇALIÞIYOR\n");
 		
 		UserManager userManager = new UserManager();
 		
@@ -47,8 +47,9 @@ public class Main {
 		instructorManager.add(instructor2);
 		
 		//Kullanýcý giriþ iþlemleri
+		//Listeyi kullanabilir hale gelene kadar kapalý tutacaðým
 		
-		login();
+		//login();
 		
 		User[] users = userManager.getAll();
 		Student[] students = studentManager.getAll();

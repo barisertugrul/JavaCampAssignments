@@ -5,7 +5,7 @@ public class UserManager {
 	private User[] _users;
 
 	public UserManager() {
-		this(Database.getInstance().users1);
+		this(Database.getInstance().users);
 	}
 	
 	public UserManager(User[] users) {
