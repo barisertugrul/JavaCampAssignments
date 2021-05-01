@@ -17,8 +17,20 @@ public class UserManager {
 		return Database.getInstance().addUser(user,_users);
 	}
 	
+	public void update(User user) {
+		Database.getInstance().update(user);
+	}
+	
+	public void delete(User user) {
+		Database.getInstance().delete(user);
+	}
+	
 	public User[] getAll() {
 		return Database.getInstance().users;
+	}
+	
+	public User getById(int userId) {
+		return Database.getInstance().getUserById(userId);
 	}
 	
 	public boolean login(String email, String password) {

@@ -90,6 +90,62 @@ public class Database {
 		   */
     }
     
+    public void update(User user) {
+    	if(user.getClass().equals(Student.class)) {
+			  updateStudent((Student) user);
+		}
+    	if(user.getClass().equals(Instructor.class)){
+			  updateInstructor((Instructor) user);
+		}
+    	updateUser(user);
+    }
+    
+    public void delete(User user) {
+    	if(user.getClass().equals(Student.class)) {
+			deleteStudent((Student) user);
+    	}
+		if(user.getClass().equals(Instructor.class)){
+			deleteInstructor((Instructor) user);
+		}
+			deleteUser(user);
+    }
+    
+	private void deleteUser(User user) {
+    	User[] tempUsers = new User[this.users.length-1];
+    	int i = 0;
+    	for (User userItem : this.users) {
+			if(userItem.getId() != user.getId()) {
+				tempUsers[i] = userItem;
+				i++;
+			}
+		}
+    	this.users = tempUsers;
+	}
+
+	private void deleteInstructor(Instructor instructor) {
+    	Instructor[] tempInstructors = new Instructor[this.instructors.length-1];
+    	int i = 0;
+    	for (Instructor instructorItem : this.instructors) {
+			if(instructorItem.getId() != instructor.getId()) {
+				tempInstructors[i] = instructorItem;
+				i++;
+			}
+		}
+    	this.instructors = tempInstructors;
+	}
+
+	private void deleteStudent(Student student) {
+    	Student[] tempStudents = new Student[this.students.length-1];
+    	int i = 0;
+    	for (Student studentItem : this.students) {
+			if(studentItem.getId() != student.getId()) {
+				tempStudents[i] = studentItem;
+				i++;
+			}
+		}
+    	this.students = tempStudents;
+	}
+
 	/*
 	 * public int addUser(User user) { User[] userList = this.users; User[]
 	 * tempUsers = userList; userList = new User[userList.length+1];
@@ -106,7 +162,7 @@ public class Database {
 	 * return newId; }
 	 */
     
-    public int addBaseUser(User user) {
+    private int addBaseUser(User user) {
     	User[] userList = this.users;
 		User[] tempUsers = userList;
 		userList = new User[userList.length+1];
@@ -127,7 +183,7 @@ public class Database {
 		return newId;
     }
     
-    public int addInstructor(Instructor instructor) {
+    private int addInstructor(Instructor instructor) {
     	Instructor[] instructors = this.instructors;
 		Instructor[] tempInstructors = instructors;
 		instructors = new Instructor[instructors.length+1];
@@ -142,7 +198,7 @@ public class Database {
 		return instructor.getId();
     }
     
-    public int addStudent(Student student) {
+    private int addStudent(Student student) {
     	Student[] students = this.students;
 		Student[] tempStudents = students;
 		students = new Student[students.length+1];
@@ -156,6 +212,73 @@ public class Database {
 		this.students = students;
 		return student.getId();
     }
+    
+    private void updateUser(User user) {
+    	User updatedUser = new User();
+    	for (User userItem : this.users) {
+			if(userItem.getId() == user.getId()) {
+				updatedUser = userItem;
+				break;
+			}
+		}
+    	if(updatedUser != null) {
+    		updatedUser = user;
+    	}
+    }
+    
+    private void updateInstructor(Instructor instructor) {
+    	Instructor updatedInstructor = new Instructor();
+    	for (Instructor instructorItem : this.instructors) {
+			if(instructorItem.getId() == instructor.getId()) {
+				updatedInstructor = instructorItem;
+				break;
+			}
+		}
+    	if(updatedInstructor != null) {
+    		updatedInstructor = instructor;
+    	}
+    }
+    
+    private void updateStudent(Student student) {
+    	Student updatedStudent = new Student();
+    	for (Student studentItem : this.students) {
+			if(studentItem.getId() == student.getId()) {
+				updatedStudent = studentItem;
+				break;
+			}
+		}
+    	if(updatedStudent != null) {
+    		updatedStudent = student;
+    	}
+    }
+    
+    public User getUserById(int userId) {
+    	for (User user : users) {
+			if(user.getId() == userId) {
+				return user;
+			}
+		}
+    	return null;
+    }
+    
+    public Instructor getInstructorById(int instructorId) {
+    	for (Instructor instructor : instructors) {
+			if(instructor.getId() == instructorId) {
+				return instructor;
+			}
+		}
+    	return null;
+    }
+    
+    public Student getStudentById(int studentId) {
+    	for (Student student : students) {
+			if(student.getId() == studentId) {
+				return student;
+			}
+		}
+    	return null;
+    }
+    
     
     public User login(String email, String password) {
     	for (User user : users) {

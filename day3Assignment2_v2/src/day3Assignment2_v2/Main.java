@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static User[] tblUsers = new User[0];
 	public static void main(String[] args) {
 		/*
 		 * Version 2 üzerinde çalýþýlýyor
@@ -17,8 +16,13 @@ public class Main {
 		System.out.println("3.GÜN 2.ÖDEV VERSION 2 ÇALIÞIYOR\n");
 		
 		UserManager userManager = new UserManager(Database.getInstance().users);
-		User user1 = new User("Barýþ","Ertuðrul","barisertugrul@barisertugrul.com","12345","avatar.jpg");
-		userManager.add(user1);
+		
+		User guncellenecekUser = new User("Güncellenecek","Kullanýcý","barisertugrul@barisertugrul.com","12345","avatar.jpg");
+		userManager.add(guncellenecekUser);
+
+		/*
+		 * Öðrencilerin eklenmesi
+		 */
 		Map<String,Boolean> preferences = new HashMap<String,Boolean>();
 		preferences.put("EmailBildirimi", true);
 		Student student1 = new Student("Barýþ","Ertuðrul","barisertugrul@barisertugrul.com","12345","avatar.jpg",preferences);
@@ -27,33 +31,44 @@ public class Main {
 		preferences.put("SMSBildirimi", true);
 		Student student2 = new Student("Kerem","Varýþ","kerem@kerem.com","12345","avatar-kerem.jpg",preferences);
 
+		Student silinecekStudent = new Student("Silinecek","Student","barisertugrul@barisertugrul.com","12345","avatar.jpg",preferences);
+
 		StudentManager studentManager = new StudentManager();
 		studentManager.add(student1);
 		studentManager.add(student2);
+		studentManager.add(silinecekStudent);
 		
+		/*
+		 * Eðitimcilerin eklenmesi
+		 */
 		String[] skills1 = {"C#", "Java", "Flutter", "Python"};
 		String[] certificates1 = {"MCT", "PMP"};
 		double salary1 = 6500;
 		Instructor instructor1 = new Instructor("Engin","Demiroð","engin@engindemirog.com","12345","avatar-engin.jpg",skills1, certificates1,salary1);
 		
+		String[] skills2 = {"Hint Ýngilizcesi", "C#", "Java"};
+		String[] certificates2 = {"MCT", "PMP"};
+		double salary2 = 7500;
+		Instructor instructor2 = new Instructor("Engin-2","Demiroð","engin2@engindemirog.com","12345","avatar-engin-2.jpg",skills2, certificates2,salary2);
+		
+
+		String[] skills3 = {"Yok"};
+		String[] certificates3 = {"Bu da yok"};
+		double salary3 = 1500;
+		Instructor silinecekInstructor = new Instructor("Silinecek","Eðitimci","silinecek@egitimci.com","12345","avatar-default.jpg",skills3, certificates3,salary3);
 		
 		InstructorManager instructorManager = new InstructorManager();
 		instructorManager.add(instructor1);
-		//userManager = new UserManager(Database.getInstance().users);
-		
-
-		String[] skills2 = {"C#", "Java", "Flutter", "Python"};
-		String[] certificates2 = {"MCT", "PMP"};
-		double salary2 = 6500;
-		Instructor instructor2 = new Instructor("Engin","Demiroð","engin@engindemirog.com","12345","avatar-engin.jpg",skills2, certificates2,salary2);
-		
 		instructorManager.add(instructor2);
+		instructorManager.add(silinecekInstructor);
 		
 		//Kullanýcý giriþ iþlemleri
-		//Listeyi kullanabilir hale gelene kadar kapalý tutacaðým
 		
-		//login();
+		login();
 		
+		/*
+		 * Listelerin yazdýrýlmasý
+		 */
 		User[] users = userManager.getAll();
 		Student[] students = studentManager.getAll();
 		Instructor[] instructors = instructorManager.getAll();
@@ -154,15 +169,56 @@ public class Main {
 			}
 		}
 		
-		for (User user : tblUsers) {
+		/*
+		 * Ek iþlemler
+		 */
+		//Güncelleme
+		User updatableUser = userManager.getById(1);
+		updatableUser.setFirstName("Silinecek");
+		userManager.update(updatableUser);
+		System.out.println("\n1 nolu kullanýcýnýn ismi güncellendi.");
+		users = userManager.getAll();
+		for (User user : users) {
 			System.out.format("%6s%30s%35s", user.getId(), user.getFirstName() + " " + user.getLastName(), user.geteMail() + "\n");
 		}
+		
+		//Silme
+		User deleteUser = userManager.getById(1);
+		userManager.delete(deleteUser);
+		System.out.println("\n1 nolu kullanýcý silindi.");
+
+		User deleteInstructor = instructorManager.getById(7);
+		instructorManager.delete(deleteInstructor);
+		System.out.println("\n7 nolu instructor silindi.");
+		
+		User deleteStudent = studentManager.getById(4);
+		studentManager.delete(deleteStudent);
+		System.out.println("\n4 nolu student silindi.");
+
+		System.out.println("\n== Tüm Kullanýcýlar ================");
+		users = userManager.getAll();
+		for (User user : users) {
+			System.out.format("%6s%30s%35s", user.getId(), user.getFirstName() + " " + user.getLastName(), user.geteMail() + "\n");
+		}
+
+		System.out.println("\n== Eðitimciler ================");
+		instructors = instructorManager.getAll();
+		for (User instructor : instructors) {
+			System.out.format("%6s%30s%35s", instructor.getId(), instructor.getFirstName() + " " + instructor.getLastName(), instructor.geteMail() + "\n");
+		}
+
+		System.out.println("\n== Öðrenciler ================");
+		students = studentManager.getAll();
+		for (User student : students) {
+			System.out.format("%6s%30s%35s", student.getId(), student.getFirstName() + " " + student.getLastName(), student.geteMail() + "\n");
+		}
+		
 	}
 
 	private static void login() {
 		boolean logged = false;
+		Scanner kullaniciGirdisi = new Scanner(System.in);
 		while (!logged) {
-			Scanner kullaniciGirdisi = new Scanner(System.in);
 			System.out.println("LOGIN: ");
 			System.out.print("E-Posta adresinizi giriniz: ");
 			String email = kullaniciGirdisi.next();
@@ -172,8 +228,8 @@ public class Main {
 			kullaniciGirdisi.nextLine();
 			UserManager userManager = new UserManager();
 			logged = userManager.login(email, password);
-			kullaniciGirdisi.close();
 		}
+		kullaniciGirdisi.close();
 
 	}
 
