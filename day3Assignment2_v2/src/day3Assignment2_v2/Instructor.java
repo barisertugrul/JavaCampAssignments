@@ -1,6 +1,7 @@
 package day3Assignment2_v2;
 
 public class Instructor extends User {
+	private int _userId;
 	private String[] _skills;
 	private String[] _certificates;
 	private double _salary;
@@ -9,15 +10,24 @@ public class Instructor extends User {
 		super();
 	}
 
-	public Instructor(int id, String firstName, String lastName, String eMail, String password, String avatar,String[] skills, String[] certificates, double salary) {
+	public Instructor(int id, int userId, String firstName, String lastName, String eMail, String password, String avatar,String[] skills, String[] certificates, double salary) {
 		super(id, firstName, lastName, eMail, password, avatar);
-		_skills = skills;
-		_certificates = certificates;
-		_salary = salary;
+		this.setUserId(userId);
+		this.setSkills(skills);
+		this.setCertificates(certificates);
+		this.setSalary(salary);
 	}
 
 	public Instructor(String firstName, String lastName, String eMail, String password, String avatar,String[] skills, String[] certificates, double salary) {	
-		this(0, firstName, lastName, eMail, password, avatar, skills, certificates, salary);
+		this(0, 0, firstName, lastName, eMail, password, avatar, skills, certificates, salary);
+	}
+
+	public int getUserId() {
+		return _userId;
+	}
+
+	public void setUserId(int userId) {
+		_userId = userId;
 	}
 
 	public String[] getSkills() {

@@ -1,6 +1,9 @@
 package day3Assignment2_v2;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -23,15 +26,16 @@ public class Main {
 		/*
 		 * Öğrencilerin eklenmesi
 		 */
-		Map<String,Boolean> preferences = new HashMap<String,Boolean>();
-		preferences.put("EmailBildirimi", true);
-		Student student1 = new Student("Barış","Ertuğrul","barisertugrul@barisertugrul.com","12345","avatar.jpg",preferences);
+		Map<String,Boolean> preferences1 = new HashMap<String,Boolean>();
+		preferences1.put("EmailBildirimi", true);
+		Student student1 = new Student("Barış","Ertuğrul","barisertugrul@barisertugrul.com","12345","avatar.jpg",preferences1);
 
-		preferences.put("EmailBildirimi", false);
-		preferences.put("SMSBildirimi", true);
-		Student student2 = new Student("Kerem","Varış","kerem@kerem.com","12345","avatar-kerem.jpg",preferences);
+		Map<String,Boolean> preferences2 = new HashMap<String,Boolean>();
+		preferences2.put("EmailBildirimi", false);
+		preferences2.put("SMSBildirimi", true);
+		Student student2 = new Student("Kerem","Varış","kerem@kerem.com","12345","avatar-kerem.jpg",preferences2);
 
-		Student silinecekStudent = new Student("Silinecek","Student","barisertugrul@barisertugrul.com","12345","avatar.jpg",preferences);
+		Student silinecekStudent = new Student("Silinecek","Student","barisertugrul@barisertugrul.com","12345","avatar.jpg",preferences1);
 
 		StudentManager studentManager = new StudentManager();
 		studentManager.add(student1);
@@ -96,14 +100,13 @@ public class Main {
 		System.out.println("\n********************************************************************************");
 		System.out.println("*  ================================ Students ================================  *");
 		System.out.println("********************************************************************************\n");
-		System.out.format("%6s%30s%35s", "No", "İsim-Soyisim", "E-Posta Adresi\n");
-		System.out.format("%6s%30s%35s", "--", "------------", "--------------\n");
+		System.out.format("%6s%30s%35s%40s", "No", "İsim-Soyisim", "E-Posta Adresi", "Tercihler\n");
+		System.out.format("%6s%30s%35s%40s", "--", "------------", "--------------","---------\n");
+		
 		for (Student student : students) {
-			System.out.format("%6s%30s%35s", student.getId(), student.getFirstName() + " " + student.getLastName(), student.geteMail() + "\n");
-			preferences = student._informationPreferences;
-			if(preferences.containsKey("EmailBildirimi")) {
-				System.out.println("++++Email Bildirimi: " + preferences.get("EmailBildirimi") + "\n");
-			}
+			Map<String,Boolean> preferences = student.getInformationPreferences();
+			System.out.format("%6s%30s%35s%40s", student.getId(), student.getFirstName() + " " + student.getLastName(), student.geteMail(), "++++Email Bildirimi: " + preferences.get("EmailBildirimi") + "\n");
+			
 		}
 		
 		
@@ -187,13 +190,13 @@ public class Main {
 		userManager.delete(deleteUser);
 		System.out.println("\n1 nolu kullanıcı silindi.");
 
-		User deleteInstructor = instructorManager.getById(7);
+		User deleteInstructor = instructorManager.getById(3);
 		instructorManager.delete(deleteInstructor);
-		System.out.println("\n7 nolu instructor silindi.");
+		System.out.println("\n3 nolu instructor silindi.");
 		
-		User deleteStudent = studentManager.getById(4);
+		User deleteStudent = studentManager.getById(3);
 		studentManager.delete(deleteStudent);
-		System.out.println("\n4 nolu student silindi.");
+		System.out.println("\n3 nolu student silindi.");
 
 		System.out.println("\n== Tüm Kullanıcılar ================");
 		users = userManager.getAll();

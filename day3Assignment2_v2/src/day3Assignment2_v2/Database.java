@@ -24,8 +24,8 @@ public class Database {
 	
 	//Otomatik artan ID simülasyonu için
 	int userId = 0;
-	//int instructorId = 0;
-	//int studentId = 0;
+	int instructorId = 0;
+	int studentId = 0;
 	int courseId = 0;
 	int courseCategoryId = 0;
 	int courseLectureId = 0;
@@ -66,9 +66,13 @@ public class Database {
     	if(user.getClass().equals(User.class)) {
 			  return lastId;
 		}else if(user.getClass().equals(Student.class)) {
-			  return addStudent((Student) user);
+			Student student = (Student) user;
+			student.setUserId(lastId);
+			  return addStudent(student);
 		}else if(user.getClass().equals(Instructor.class)){
-			  return addInstructor((Instructor) user);
+			Instructor instructor = (Instructor) user;
+			instructor.setUserId(lastId);
+			  return addInstructor(instructor);
 		}else{
 			  return 0;
 		}
@@ -114,7 +118,8 @@ public class Database {
     	User[] tempUsers = new User[this.users.length-1];
     	int i = 0;
     	for (User userItem : this.users) {
-			if(userItem.getId() != user.getId()) {
+    		System.out.println(userItem.getFirstName());
+			if(!userItem.equals(user)) {
 				tempUsers[i] = userItem;
 				i++;
 			}
@@ -126,7 +131,7 @@ public class Database {
     	Instructor[] tempInstructors = new Instructor[this.instructors.length-1];
     	int i = 0;
     	for (Instructor instructorItem : this.instructors) {
-			if(instructorItem.getId() != instructor.getId()) {
+			if(!instructorItem.equals(instructor)) {
 				tempInstructors[i] = instructorItem;
 				i++;
 			}
@@ -138,7 +143,7 @@ public class Database {
     	Student[] tempStudents = new Student[this.students.length-1];
     	int i = 0;
     	for (Student studentItem : this.students) {
-			if(studentItem.getId() != student.getId()) {
+			if(!studentItem.equals(student)) {
 				tempStudents[i] = studentItem;
 				i++;
 			}
@@ -171,7 +176,6 @@ public class Database {
 			userList[i] = tempUsers[i];
 		}
 		
-		
 		this.userId += 1;
 		int newId = this.userId;
 		user.setId(newId);
@@ -192,6 +196,10 @@ public class Database {
 			instructors[i] = tempInstructors[i];
 		}
 		
+		this.instructorId += 1;
+		int newId = this.instructorId;
+		instructor.setId(newId);
+		
 		instructors[instructors.length-1] = instructor;
 		
 		this.instructors = instructors;
@@ -206,6 +214,10 @@ public class Database {
 		for (int i = 0; i < tempStudents.length; i++) {
 			students[i] = tempStudents[i];
 		}
+		
+		this.studentId += 1;
+		int newId = this.studentId;
+		student.setId(newId);
 		
 		students[students.length-1] = student;
 		
