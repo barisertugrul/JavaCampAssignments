@@ -1,4 +1,4 @@
-package aAssignment3_2_v2;
+package assignment3_2_v2;
 
 import java.util.HashMap;
 import java.util.Map;
