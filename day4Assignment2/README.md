@@ -1,2 +1,2 @@
 # Day 4 Assignment 2
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=barisertugrul&repo=JavaCampAssignments/tree/main/day4Assignment2)](https://github.com/barisertugrul/JavaCampAssignments/tree/main/day4Assignment2)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=barisertugrul&repo=JavaCampAssignments)](https://github.com/barisertugrul/JavaCampAssignments/tree/main/day4Assignment2)
