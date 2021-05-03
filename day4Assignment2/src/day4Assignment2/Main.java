@@ -5,7 +5,7 @@ import day4Assignment2.Abstract.BaseCustomerManager;
 import day4Assignment2.Concrete.NeroCustomerManager;
 import day4Assignment2.Concrete.StarbucksCustomerManager;
 import day4Assignment2.Entities.Customer;
-import day4Assignment2.Adapters.TCKNValidate;
+import day4Assignment2.Adapters.MernisServiceAdapter;
 
 public class Main {
 
@@ -18,7 +18,7 @@ public class Main {
         		"12345678910"
         		);
         
-		BaseCustomerManager starbucksCustomerManager = new StarbucksCustomerManager(new TCKNValidate());
+		BaseCustomerManager starbucksCustomerManager = new StarbucksCustomerManager(new MernisServiceAdapter());
 		starbucksCustomerManager.save(starbucksCustomer);
 		
 

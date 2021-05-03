@@ -5,7 +5,8 @@ import day4Assignment2.Entities.Customer;
 
 public class TCKNValidate implements CustomerCheckService {
 	
-	public Boolean CheckIfRealPerson(Customer customer) {
+	@Override
+	public boolean checkIfRealPerson(Customer customer) {
 		return isTCKN(customer.getNationalityId());
 	}
 	

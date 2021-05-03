@@ -1,4 +1,4 @@
-package day4Assignment2.Concrete;
+package day4Assignment2.Adapters;
 
 import day4Assignment2.Abstract.CustomerCheckService;
 import day4Assignment2.Entities.Customer;
@@ -6,7 +6,7 @@ import day4Assignment2.Entities.Customer;
 public class CustomerCheckManager implements CustomerCheckService {
 	
 	@Override
-	public Boolean CheckIfRealPerson(Customer customer) {
+	public boolean checkIfRealPerson(Customer customer) {
 		return true;
 	}
 
