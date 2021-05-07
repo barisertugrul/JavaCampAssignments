@@ -1,5 +1,6 @@
 package assignment5_1;
 
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
@@ -17,7 +18,7 @@ import assignment5_1.entities.concretes.UserForRegister;
 public class Main {
 	
 	static Scanner userKeyboard = new Scanner(System.in);
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		AuthManager authManager = new AuthManager(new ServiceFactoryManager());
 
@@ -119,7 +120,7 @@ public class Main {
 		}
 	}
 
-	private static void menu() {
+	private static void menu() throws IOException {
 		boolean exit = false;
 		
 		while (!exit) {
@@ -163,6 +164,8 @@ public class Main {
 					exit = true;
 					break;
 			}
+			System.out.println("\n******** Press any key to continue... ");
+			System.in.read();
 		}
 
 		
