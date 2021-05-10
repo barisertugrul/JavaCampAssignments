@@ -7,27 +7,15 @@ CREATE TABLE public.employees
 (
     employee_id smallint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 32767 CACHE 1 ),
     user_id smallint NOT NULL,
-    first_name character varying(30)[] NOT NULL,
-    last_name character varying(30)[] NOT NULL,
+    first_name character varying(35) NOT NULL,
+    last_name character varying(35) NOT NULL,
     PRIMARY KEY (employee_id)
-);
-
-CREATE TABLE public.employers
-(
-    employer_id smallint NOT NULL,
-    user_id smallint NOT NULL,
-    company_name character varying(75)[] NOT NULL,
-    website character varying(50)[] NOT NULL,
-    phone_number character varying(15)[] NOT NULL,
-    activation_code character varying(500)[] NOT NULL,
-    activation_comfirm boolean NOT NULL,
-    PRIMARY KEY (employer_id)
 );
 
 CREATE TABLE public.job_positions
 (
     position_id smallint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 32767 CACHE 1 ),
-    position_name character varying(30)[] NOT NULL,
+    position_name character varying(30) NOT NULL,
     position_description text,
     PRIMARY KEY (position_id)
 );
@@ -35,29 +23,23 @@ CREATE TABLE public.job_positions
 CREATE TABLE public.job_seeker
 (
     job_seeker_id smallint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 32767 CACHE 1 ),
-    first_name character varying(30)[] NOT NULL,
-    last_name character varying(30)[] NOT NULL,
-    nationality_id character varying(15)[] NOT NULL,
-    birth_date date NOT NULL,
     user_id smallint NOT NULL,
+    first_name character varying(30) NOT NULL,
+    last_name character varying(30) NOT NULL,
+    nationality_id character varying(15) NOT NULL,
+    birth_date date NOT NULL,
     PRIMARY KEY (job_seeker_id)
 );
 
 CREATE TABLE public.users
 (
     user_id smallint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 32767 CACHE 1 ),
-    email character varying(50)[] NOT NULL,
-    password character varying(500)[] NOT NULL,
+    email character varying(50) NOT NULL,
+    password character varying(500) NOT NULL,
     PRIMARY KEY (user_id)
 );
 
 ALTER TABLE public.employees
-    ADD FOREIGN KEY (user_id)
-    REFERENCES public.users (user_id)
-    NOT VALID;
-
-
-ALTER TABLE public.employers
     ADD FOREIGN KEY (user_id)
     REFERENCES public.users (user_id)
     NOT VALID;
